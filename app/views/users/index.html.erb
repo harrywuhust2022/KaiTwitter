@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Users List</title>
+  <style>
+    /* Add CSS styles for layout and appearance */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5; /* Light white background */
+      color: #000; /* Black text */
+      margin: 0;
+      padding: 0;
+      position: relative;
+      min-height: 100vh;
+    }
+    .header {
+      background-color: #000; /* Black background for titles */
+      color: #fff; /* White text for titles */
+      text-align: center;
+      padding: 40px 0;
+      font-size: 36px;
+    }
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff; /* White background for content */
+      color: #000; /* Black text for content */
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      text-align: center; /* Center content horizontally */
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin: 10px 0;
+    }
+    a {
+      color: #007BFF; /* You can choose to keep links with a different color */
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      text-align: center;
+      padding: 20px;
+      background-color: #000; /* Black background for the footer */
+      color: #fff; /* White text for the footer */
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    User Lists
+  </div>
+
+  <div class="content">
+    <p><b>Existing Users</b>: </p>
+    <ul>
+      <% @users.each do |user| %>
+        <li>
+          <a href="<%= user_path(user) %>">
+            <p><strong><%= user.firstname %> <%= user.secondname %></strong> (User ID: <%= user.id %>)</p>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+    <p><b>Create new Users</b>: </p>
+    <%= link_to "New User", new_user_path %>
+  </div>
+
+  <div class="footer">
+    KAI Team - Team Members: Kai Han, Qiming Wu
+  </div>
+</body>
+</html>
+

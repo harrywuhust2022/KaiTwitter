@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Details</title>
+  <style>
+    /* Add CSS styles for layout and appearance */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5; /* Light white background */
+      color: #000; /* Black text */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .header {
+      background-color: #000; /* Black background for titles */
+      color: #fff; /* White text for titles */
+      text-align: center;
+      padding: 40px 0;
+      font-size: 36px;
+    }
+    .content {
+      width: 40%; /* Adjust the width as needed (e.g., 80%) */
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff; /* White background for content */
+      color: #000; /* Black text for content */
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      text-align: left; /* Center content horizontally */
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin: 10px 0;
+    }
+    a {
+      color: #007BFF; /* You can choose to keep links with a different color */
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #000; /* Black background for the footer */
+      color: #fff; /* White text for the footer */
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    User Details
+  </div>
+
+  <div class="content">
+    <h2>
+      Posts of user <%= @user.firstname %>
+      <%= @user.secondname %>
+    </h2>
+
+    <ul>
+      <li><%= link_to "Edit", edit_user_path(@user) %></li>
+      <li><%= link_to "Delete", verify_email_user_path(@user) %></li>
+      <li>
+        <%= link_to "New Post", new_user_post_path(@user), class: "btn btn-primary" %>
+      </li>
+      <li>
+        <%= link_to 'Back to User Lists', users_path, class: 'btn btn-primary' %>
+      </li>
+    </ul>
+
+    <% if @user %>
+      <h2>User Information</h2>
+      <p>Name: <%= @user.firstname %></p>
+      <p>Email: <%= @user.email %></p>
+      <!-- Display other user information as needed -->
+    <% else %>
+      <p>User not found. 404 Error.</p>
+    <% end %>
+
+    <% @user.posts.each do |post| %>
+      <p style="color: blue;">
+        <strong>Content:</strong>
+      </p>
+      <p>
+        <%= post.body %>
+      </p>
+
+      <p>
+        <strong>Reviews:</strong>
+      <p>
+      <% post.reviews.each do |review| %>
+        <p>
+          - <%= review.body %>
+        </p>
+      <% end %>
+
+      <% @review.errors.full_messages_for(:body).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+
+      <%= form_with model: [post, post.reviews.build], url: user_post_reviews_path(@user, post), local: true do |form| %>
+        <p style="color: gray;">
+          <%= form.label :leave_a_review %><br>
+          <%= form.text_area :body %>
+        </p>
+        <p>
+          <%= form.submit %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="footer">
+    KAI Team - Team Members: Kai Han, Qiming Wu
+  </div>
+</body>
+</html>

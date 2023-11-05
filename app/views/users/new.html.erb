@@ -1,0 +1,31 @@
+<h1>Create a new User</h1>
+
+<%= form_with model: @user do |form| %>
+  <div>
+    <%= form.label :FirstName %><br>
+    <%= form.text_field :firstname %>
+    <% @user.errors.full_messages_for(:firstname).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :LastName %><br>
+    <%= form.text_area :secondname %>
+    <% @user.errors.full_messages_for(:secondname).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :Email %><br>
+    <%= form.text_area :email %>
+    <% @user.errors.full_messages_for(:email).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

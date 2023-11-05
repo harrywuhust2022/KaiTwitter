@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Verify your Email</title>
+  <style>
+    /* Add CSS styles for layout and appearance */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5; /* Light white background */
+      color: #000; /* Black text */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .header {
+      background-color: #000; /* Black background for titles */
+      color: #fff; /* White text for titles */
+      text-align: center;
+      padding: 40px 0;
+      font-size: 36px;
+    }
+    .content {
+      width: 40%; /* Adjust the width as needed (e.g., 80%) */
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff; /* White background for content */
+      color: #000; /* Black text for content */
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      text-align: left; /* Center content horizontally */
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin: 10px 0;
+    }
+    a {
+      color: #007BFF; /* You can choose to keep links with a different color */
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #000; /* Black background for the footer */
+      color: #fff; /* White text for the footer */
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    Verify your Email
+  </div>
+
+  <div class="content">
+    <h1>Verify Email to Delete Account</h1>
+    <p><% flash.each do |type, msg| %>
+      <div>
+        <%= msg %>
+      </div>
+    <% end %></p>
+    <%= form_with url: user_path(@user), method: :delete, local: true do |form| %>
+      <div>
+        <%= form.label :email, "Confirm your email" %>
+        <%= form.email_field :email, required: true %>
+      </div>
+
+      <div>
+        <%= form.submit "Verify Email and Delete Account" %>
+      </div>
+    <% end %>
+
+    <%= link_to 'Cancel', user_path(@user) %>
+  </div>
+
+  <div class="footer">
+    KAI Team - Team Members: Kai Han, Qiming Wu
+  </div>
+</body>
+</html>
+

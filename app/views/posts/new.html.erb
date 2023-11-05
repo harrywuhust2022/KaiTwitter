@@ -1,0 +1,19 @@
+<h1>New Post for <%= @user.firstname %> <%= @user.secondname %></h1>
+<% flash.each do |type, msg| %>
+    <div>
+      <%= msg %>
+    </div>
+<% end %>
+<%= form_with model: [ @user, Post.new ] do |form| %>
+  <p>
+    <%= form.label :email, "Email for verification" %><br>
+    <%= form.text_field :email %>
+  </p>
+  <p>
+    <%= form.label :Content %><br>
+    <%= form.text_field :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

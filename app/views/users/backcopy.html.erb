@@ -1,0 +1,149 @@
+<h1>Users List</h1>
+
+<ul>
+  <% @users.each do |user| %>
+    <li>
+      <a href="/users/<%= user.id %>">
+      <%= user.firstname %>
+      <%= user.secondname %>
+      (User id: <%= user.id %>)
+    </li>
+    
+  <% end %>
+</ul>
+
+<%= link_to "New User", new_user_path %>
+
+# original code for index.html.erb
+
+
+# original code for show.html.erb
+
+# <h1>
+#     <%= @user.firstname %>
+#     <%= @user.secondname %> Post
+# </h1>
+
+# <ul>
+#   <li><%= link_to "Edit", edit_user_path(@user) %></li>
+#   <li><%= link_to "Delete", verify_email_user_path(@user) %></li>
+#   <li>
+#   <%= link_to "New Post", new_user_post_path(@user), class: "btn btn-primary" %>
+#   </li>
+#   <li>
+#   <%= link_to 'Back to User Lists', users_path, class: 'btn btn-primary' %>
+#   </li>
+# </ul>
+
+# <% if @user %>
+#   <h1>User Information</h1>
+#   <p>Name: <%= @user.firstname %></p>
+#   <p>Email: <%= @user.email %></p>
+#   <!-- Display other user information as needed -->
+# <% else %>
+#   <p>User not found. 404 Error.</p>
+# <% end %>
+
+# <% @user.posts.each do |post| %>
+#   <p style="color: blue;">
+#     <strong>Content:</strong>
+#   </p>
+#   <p>
+#   <%= post.body %>
+#   </p>
+
+  
+#   <p>
+#   <strong>Reviews:</strong>
+#   <p>
+#   <% post.reviews.each do |review| %>
+#     <p>
+#       - <%= review.body %>
+#     </p>
+#   <% end %>
+  
+#   <% @review.errors.full_messages_for(:body).each do |message| %>
+#     <div><%= message %></div>
+#   <% end %>
+
+#   <%= form_with model: [post, post.reviews.build], url: user_post_reviews_path(@user, post), local: true do |form| %>
+
+#     <p style="color: gray;">
+#       <%= form.label :leave_a_review %><br>
+#       <%= form.text_area :body %>
+#     </p>
+#     <p>
+#       <%= form.submit %>
+#     </p>
+#   <% end %>
+  
+# <% end %>
+
+# ****************************************************************
+# original code for verify email.html.erb
+
+# <h1>Verify Email to Delete Account</h1>
+# <p><% flash.each do |type, msg| %>
+#     <div>
+#       <%= msg %>
+#     </div>
+# <% end %></p>
+# <%= form_with url: user_path(@user), method: :delete, local: true do |form| %>
+#   <div>
+#     <%= form.label :email, "Confirm your email" %>
+#     <%= form.email_field :email, required: true %>
+#   </div>
+
+#   <div>
+#     <%= form.submit "Verify Email and Delete Account" %>
+#   </div>
+# <% end %>
+
+# <%= link_to 'Cancel', user_path(@user) %>
+
+
+
+
+# ************************
+# original code for edit.hteml.erb
+
+# <h1>Edit Account <%= @user.firstname %><%= @user.secondname %></h1>
+# <%= form_with model: @user do |form| %>
+#     <% flash.each do |type, msg| %>
+#         <div>
+#           <%= msg %>
+#         </div>
+#     <% end %>
+#     <div>
+#     <%= form.label :Validate_previous_email %><br>
+#     <%= form.text_field :validate_email %>
+#     </div>
+
+#     <div>
+#       <%= form.label :FirstName %><br>
+#       <%= form.text_field :firstname %>
+#       <% @user.errors.full_messages_for(:firstname).each do |message| %>
+#           <div><%= message %></div>
+#       <% end %>
+#     </div>
+  
+#     <div>
+#       <%= form.label :LastName %><br>
+#       <%= form.text_field :secondname %>
+#       <% @user.errors.full_messages_for(:secondname).each do |message| %>
+#           <div><%= message %></div>
+#       <% end %>
+#     </div>
+  
+#     <div>
+#       <%= form.label :New_Email %><br>
+#       <%= form.text_field :email %>
+#       <% @user.errors.full_messages_for(:email).each do |message| %>
+#           <div><%= message %></div>
+#       <% end %>
+#     </div>
+  
+#     <div>
+#       <%= form.submit %>
+#     </div>
+# <% end %>
