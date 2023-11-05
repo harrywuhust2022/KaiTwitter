@@ -35,8 +35,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if params[:validate_email] == @user.email
-      if @user.update(article_params)
+    if params[:user][:validate_email] == @user.email
+      if @user.update(user_params)
         redirect_to @user
       else
         render :edit, status: :unprocessable_entity
@@ -48,7 +48,6 @@ class UsersController < ApplicationController
 
   def verify_email
     @user = User.find(params[:id])
-    # 这里渲染验证邮箱的视图
   end
 
   def destroy
