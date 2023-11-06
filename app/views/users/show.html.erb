@@ -60,7 +60,7 @@
 
   <div class="content">
     <h2>
-      Posts of user <%= @user.firstname %>
+      Manage Posts of user <%= @user.firstname %>
       <%= @user.secondname %>
     </h2>
 
@@ -76,9 +76,8 @@
     </ul>
 
     <% if @user %>
-      <h2>User Information</h2>
-      <p>Name: <%= @user.firstname %></p>
-      <p>Email: <%= @user.email %></p>
+      <h2>Post Details</h2>
+      <p>User Name: <%= @user.firstname %> <%= @user.secondname %></p>
       <!-- Display other user information as needed -->
     <% else %>
       <p>User not found. 404 Error.</p>
@@ -86,10 +85,7 @@
 
     <% @user.posts.each do |post| %>
       <p style="color: blue;">
-        <strong>Content:</strong>
-      </p>
-      <p>
-        <%= post.body %>
+        <strong>Posts:</strong> <%= post.body %>
       </p>
 
       <p>

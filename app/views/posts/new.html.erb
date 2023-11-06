@@ -1,19 +1,90 @@
-<h1>New Post for <%= @user.firstname %> <%= @user.secondname %></h1>
-<% flash.each do |type, msg| %>
-    <div>
-      <%= msg %>
-    </div>
-<% end %>
-<%= form_with model: [ @user, Post.new ] do |form| %>
-  <p>
-    <%= form.label :email, "Email for verification" %><br>
-    <%= form.text_field :email %>
-  </p>
-  <p>
-    <%= form.label :Content %><br>
-    <%= form.text_field :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Details</title>
+  <style>
+    /* Add CSS styles for layout and appearance */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5; /* Light white background */
+      color: #000; /* Black text */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .header {
+      background-color: #000; /* Black background for titles */
+      color: #fff; /* White text for titles */
+      text-align: center;
+      padding: 40px 0;
+      font-size: 36px;
+    }
+    .content {
+      width: 40%; /* Adjust the width as needed (e.g., 80%) */
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff; /* White background for content */
+      color: #000; /* Black text for content */
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      text-align: center; /* Center content horizontally */
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin: 10px 0;
+    }
+    a {
+      color: #007BFF; /* You can choose to keep links with a different color */
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #000; /* Black background for the footer */
+      color: #fff; /* White text for the footer */
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    Create New Posts
+  </div>
+
+  <div class="content">
+    <h1>New Post for <%= @user.firstname %> <%= @user.secondname %></h1>
+    <% flash.each do |type, msg| %>
+      <div>
+        <%= msg %>
+      </div>
+    <% end %>
+    <%= form_with model: [ @user, Post.new ] do |form| %>
+      <p>
+        <%= form.label :email, "Email for verification" %><br>
+        <%= form.text_field :email %>
+      </p>
+      <p>
+        <%= form.label :Content %><br>
+        <%= form.text_field :body %>
+      </p>
+      <p>
+        <%= form.submit %>
+      </p>
+      <p>
+      <%= link_to 'Cancel', user_path(@user) %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="footer">
+    KAI Team - Team Members: A, B
+  </div>
+</body>
+</html>
